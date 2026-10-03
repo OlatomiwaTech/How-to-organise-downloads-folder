@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 
 # ================= CONFIGURATION =================
-DOWNLOADS_DIR = Path(r"C:\Users\Olatomiwa\Downloads")
+DOWNLOADS_DIR = Path(r"C:/Users/Tomiwa/Downloads")
 LOG_FILE = DOWNLOADS_DIR / f"organize-log-{datetime.now().strftime('%Y%m%d-%H%M%S')}.txt"
 
 # Extension → Folder mapping (customize as needed)
