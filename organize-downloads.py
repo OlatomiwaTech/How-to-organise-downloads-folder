@@ -26,6 +26,7 @@ MAPPING = {
     ".bmp": "Images",
     ".webp": "Images",
     ".mp4": "Videos",
+    ".mp4a": "Videos",
     ".avi": "Videos",
     ".mov": "Videos",
     ".wmv": "Videos",
