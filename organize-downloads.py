@@ -102,7 +102,7 @@ def organize_folder_thread():
         
         try:
             ext = file_path.suffix.lower()
-            
+
             # Duplicate detection
             if duplicate_var.get():
                 file_hash = get_file_hash(file_path)
@@ -112,29 +112,29 @@ def organize_folder_thread():
                     if not duplicates_folder.exists():
                         duplicates_folder.mkdir()
                     dest_path = get_unique_path(duplicates_folder / file_path.name)
-                    action_log.append(("duplicate", str(file_path), str(dest_path))
+                    action_log.append(("duplicate", str(file_path), str(dest_path)))
                     shutil.move(str(file_path), str(dest_path))
                     write_log(log_file, f"Moved duplicate: {file_path.name}", "INFO")
                     continue
                 duplicate_hashes[file_hash] = file_path
-            
+
             if ext in MAPPING:
                 folder_name = MAPPING[ext]
-                
+
                 if date_var.get():
                     date_folder = datetime.fromtimestamp(file_path.stat().st_mtime).strftime("%Y-%m")
                     folder_name = f"{folder_name}/{date_folder}"
-                
+
                 if size_var.get():
                     size_cat = get_size_category(file_size)
                     folder_name = f"{folder_name}/{size_cat}"
-                
+
                 folder_path_dest = folder_path / folder_name
                 if not folder_path_dest.exists():
                     folder_path_dest.mkdir(parents=True)
-                
+
                 dest_path = get_unique_path(folder_path_dest / file_path.name)
-                action_log.append(("move", str(file_path), str(dest_path))
+                action_log.append(("move", str(file_path), str(dest_path)))
                 shutil.move(str(file_path), str(dest_path))
                 stats["moved_files"] += 1
                 write_log(log_file, f"Moved: {file_path.name} -> {folder_name}", "INFO")
